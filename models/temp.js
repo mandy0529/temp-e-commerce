@@ -27,11 +27,11 @@ const agg = [
 ];
 
 const client = await MongoClient.connect(
-  "",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  }
+    "",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    }
 );
 const coll   = client.db("10-e-commerce").collection("reviews");
 const cursor = coll.aggregate(agg);

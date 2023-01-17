@@ -46,7 +46,7 @@ const getSingleProduct = async (req, res) => {
   if (!product) {
 
     throw new CustomError.NotFoundError(
-      `No product with id ${productId}`);
+        `No product with id ${productId}`);
   }
 
   // res 요청 보내주기
@@ -59,18 +59,18 @@ const updateProduct = async (req, res) => {
 
   // findOneAndUpdate(currentCondition, update, option, callback)
   const product = await Product.findOneAndUpdate(
-    { _id: productId },
-    req.body,
-    {
-      new: true,
-      runValidators: true
-    }
+      { _id: productId },
+      req.body,
+      {
+        new: true,
+        runValidators: true
+      }
   );
 
   // product 가 존재하지 않을 때
   if (!product) {
     throw new CustomError.NotFoundError(
-      `No product with id ${productId}`);
+        `No product with id ${productId}`);
   }
 
   // res 요청 보내주기
@@ -87,7 +87,7 @@ const deleteProduct = async (req, res) => {
   // productId 가 존재하지 않을 때
   if (!product) {
     throw new CustomError.NotFoundError(
-      `No product with id ${productId}`);
+        `No product with id ${productId}`);
   }
 
   // 해당 product 지워주기
@@ -115,12 +115,12 @@ const uploadImage = async (req, res) => {
   const maxSize = 1024 * 1024;
   if (productImage.size > maxSize) {
     throw new CustomError.BadRequestError(
-      "Please upload image smller than 1MB");
+        "Please upload image smller than 1MB");
   }
 
   // image가 어디 uploade 될지 imagePath를 정해주자
   const imagePath = path.join(__dirname,
-    `../public/uploads/${productImage.name}`
+      `../public/uploads/${productImage.name}`
   );
 
   // mv function에 우리의 imagePath 경로 담아주기

@@ -11,7 +11,7 @@ const {
         getSingleReview,
         updateReview,
         deleteReview
-      } = require("../controllers/reviewController");
+} = require("../controllers/reviewController");
 
 // -------------------------------------------
 
@@ -22,9 +22,9 @@ const router = express.Router();
 router.route("/").post(authenticateUser, createReview).get(getAllReviews);
 
 router.route("/:id")
-  .get(getSingleReview)
-  .delete(authenticateUser, deleteReview)
-  .patch(authenticateUser, updateReview);
+    .get(getSingleReview)
+    .delete(authenticateUser, deleteReview)
+    .patch(authenticateUser, updateReview);
 
 // exports
 module.exports = router;

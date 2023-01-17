@@ -20,7 +20,7 @@ const authenticateUser = async (req, res, next) => {
     next();
   } catch (error) {
     throw new CustomError.UnauthenticatedError(
-      'Authentication Invalid token payload');
+        'Authentication Invalid token payload');
   }
 };
 
@@ -29,7 +29,7 @@ const authorizePermissions = (...rest) => {
   return async (req, res, next) => {
     if (!rest.includes(req.user.role)) {
       throw new CustomError.UnauthorizedError(
-        'Unauthorized to access this route');
+          'Unauthorized to access this route');
     }
     next();
   };

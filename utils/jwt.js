@@ -5,7 +5,7 @@ const { StatusCodes } = require('http-status-codes');
 // create token
 const createJWT = ({ payload }) => {
   const token = jwt.sign(payload, process.env.JWT_SECRET,
-    { expiresIn: process.env.JWT_LIFETIME });
+      { expiresIn: process.env.JWT_LIFETIME });
 
   return token;
 };
@@ -26,9 +26,15 @@ const attachCookiesToResponse = ({ res, user }) => {
     // only browser
     httpOnly: true,
     // by one day expired 되도록 설정
-    expires: new Date(Date.now() + oneDay)
+    expires: new Date(Date.now() + oneDay),
+
+    // secure
+    secure: process.env.NODE_ENV === 'production',
+
+    // signed
+    signed: true
   });
-  
+
 };
 
 module.exports = { createJWT, isTokenValid, attachCookiesToResponse };

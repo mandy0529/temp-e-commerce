@@ -12,10 +12,10 @@ const CustomError = require("../errors");
 
 // tokenUser require
 const {
-        createTokenUser,
-        attachCookiesToResponse,
-        checkPermissions
-      } = require("../utils/index");
+  createTokenUser,
+  attachCookiesToResponse,
+  checkPermissions
+} = require("../utils/index");
 
 // ---------------------------------------
 
@@ -42,7 +42,7 @@ const createReview = async (req, res) => {
   // 유저가 이미 review를 남긴 경우 에러 처리
   if (alreadySubmitted) {
     throw new CustomError.BadRequestError(
-      "Already submitted review for this product");
+        "Already submitted review for this product");
   }
 
   // review가 만들어질때 누가 썼는지 알 수 있도록 userId 와
@@ -103,10 +103,10 @@ const updateReview = async (req, res) => {
 
   // rating, title, comment 내가 변경하려고 꾸민 나의 메모장 req.body에서 꺼내주기
   const {
-          rating,
-          comment,
-          title
-        }      = req.body;
+    rating,
+    comment,
+    title
+  }      = req.body;
   // findOne id
   const review = await Review.findOne({ _id: reviewId });
 

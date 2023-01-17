@@ -12,10 +12,10 @@ const CustomError = require("../errors");
 
 // tokenUser require
 const {
-        createTokenUser,
-        attachCookiesToResponse,
-        checkPermissions
-      } = require("../utils/index");
+  createTokenUser,
+  attachCookiesToResponse,
+  checkPermissions
+} = require("../utils/index");
 
 // --------------------------------------------
 // fakeStripeAPI function
@@ -33,10 +33,10 @@ const fakeStripeAPI = async (total) => {
 // create order
 const createOrder = async (req, res) => {
   const {
-          items: cartItems,
-          tax,
-          shippingFee
-        } = req.body;
+    items: cartItems,
+    tax,
+    shippingFee
+  } = req.body;
 
   // cartItems이 존재하지 않을 떄
   if (!cartItems || cartItems.length === 0) {
@@ -46,7 +46,7 @@ const createOrder = async (req, res) => {
   // tax 나 shippingFee 가 존재하지 않을 때
   if (!tax || !shippingFee) {
     throw new CustomError.BadRequestError(
-      "Please provide tax and shipping fee");
+        "Please provide tax and shipping fee");
   }
 
   // for loop 위한 두개의 변수 지정
@@ -62,16 +62,16 @@ const createOrder = async (req, res) => {
     // dbProduct가 존재하지 않을 때
     if (!dbProduct) {
       throw new CustomError.NotFoundError(
-        `No product with id : ${item.product}`);
+          `No product with id : ${item.product}`);
     }
 
     // Product Model에서의 우리의 찾을 수 있는 필드값
     const {
-            name,
-            price,
-            image,
-            _id,
-          } = dbProduct;
+      name,
+      price,
+      image,
+      _id,
+    } = dbProduct;
 
     // amount는 우리의 Order Model에 있는 필드이기 때문에 메모장에서 적어준 아이를 loop돌린 아이에서의 amount값을
     // 찾아줘야하고, 나머지 값을은 Product Model 에서 찾은 값들을 만들어줘서 singleOrderItems라는 변수에 저장
@@ -86,7 +86,7 @@ const createOrder = async (req, res) => {
     // amount가 존재하지 않을 때
     if (!singleOrderItems.amount) {
       throw new CustomError.BadRequestError(
-        "please provide amount of order product");
+          "please provide amount of order product");
     }
 
     // add item to order
@@ -114,10 +114,10 @@ const createOrder = async (req, res) => {
 
   //  res 요청
   res.status(StatusCodes.CREATED).json(
-    {
-      totalOrder,
-      clientSecret: totalOrder.clientSecret
-    });
+      {
+        totalOrder,
+        clientSecret: totalOrder.clientSecret
+      });
 };
 
 // get all orders
@@ -141,7 +141,7 @@ const getSingleOrder = async (req, res) => {
   // order가 존재하지 않을 경우
   if (!order) {
     throw new CustomError.NotFoundError(
-      `No product with id : ${orderId}`);
+        `No product with id : ${orderId}`);
   }
 
   // chekPermissions 미들웨어로 허용성 확인
@@ -184,7 +184,7 @@ const updateOrder = async (req, res) => {
   // 만약 해당 order 가 없을 경우
   if (!order) {
     throw new CustomError.NotFoundError(
-      `No product with id : ${orderId}`);
+        `No product with id : ${orderId}`);
   }
 
   // 로그인한 유저만 접근 가능한 미들웨어로 확인

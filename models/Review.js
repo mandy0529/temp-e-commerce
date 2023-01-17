@@ -55,7 +55,7 @@ ReviewSchema.statics.minjiCalculateAverageRating = async function(productId) {
     }
   ]);
   console.log(result, "@@@result");
-  
+
   // update aggregate result
   try {
     await this.model("Product").findOneAndUpdate({ _id: productId }, {
