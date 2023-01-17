@@ -87,7 +87,7 @@ ProductSchema.virtual("minji", {
   localField: "_id", // 현재 스키마에 선언 되어있는 참조할 필드
   foreignField: "product", // collections에서 참조할 필드
   justOne: false, // 하나만 반환하는지에 대한 여부
-  match: { rating: 5 } // filter 조건 매칭
+  // match: { rating: 5 } // filter 조건 매칭
 });
 
 // product가 삭제가 된다면 그아이가 가지고있는 reviews도 지워주기
