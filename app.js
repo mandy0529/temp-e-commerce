@@ -38,9 +38,6 @@ const mongoSanitize = require("express-mongo-sanitize");
 // ⚠️ routes 코드 앞에 쓸 것
 app.use(express.json());
 
-// morgan middlewqre
-// ⚠️ routes 코드 앞에 쓸 것
-app.use(morgan("tiny"));
 
 // cookie middleware
 app.use(cookieParser(process.env.JWT_SECRET));
@@ -72,17 +69,6 @@ app.use(xss());
 
 // mongo sanitize
 app.use(mongoSanitize());
-
-// routes
-app.get("/", (req, res) => {
-  res.send("e-commerce api");
-});
-
-// cookie test
-app.get("/api/v1", (req, res) => {
-  console.log(req.signedCookies, "@@@signedcookie");
-  res.send("e-commerce api");
-});
 
 // Routers
 app.use("/api/v1/auth", authRouter);
